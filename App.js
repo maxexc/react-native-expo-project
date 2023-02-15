@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
 //   return (
 //     <View style={styles.container}>
 //       <Text>Open up App.js to start working on your app! test</Text>
-//       <Text>Why does not working? Up</Text>
+//       <Text>Why does not working? HELLO </Text>
 //       <StatusBar style="auto" />
 //     </View>
 //   );
