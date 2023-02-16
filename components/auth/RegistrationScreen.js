@@ -167,7 +167,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: 420,
-        // maxWidth: 640,
         backgroundColor: '#fff',
     },
     background: {
