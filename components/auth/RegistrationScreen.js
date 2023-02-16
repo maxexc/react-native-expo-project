@@ -166,11 +166,13 @@ export const RegistrationScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        width: 420,
+        // maxWidth: 640,
         backgroundColor: '#fff',
     },
     background: {
         flex: 1,
-        resizeMode: "cover",
+        resizeMode: 'content',
         justifyContent: 'flex-end',
     },
     form: {
