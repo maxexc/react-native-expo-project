@@ -173,7 +173,8 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         resizeMode: 'content',
-        justifyContent: 'flex-end',
+        justifyContent:  'flex-end',
+        alignItems: 'center',
     },
     form: {
         paddingTop: 32,
