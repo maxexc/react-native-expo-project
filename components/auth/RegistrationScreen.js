@@ -166,6 +166,7 @@ export const RegistrationScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        // width: "100vw",
         width: 420,
         backgroundColor: '#fff',
     },
