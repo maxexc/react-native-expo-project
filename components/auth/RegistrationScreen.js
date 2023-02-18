@@ -97,6 +97,7 @@ export const RegistrationScreen = () => {
                                 onBlur={() => { setIsLoginFocused(false) }}
                                 onChangeText={text => handleSetLogin(text)}
                                 value={login}
+                                // textAlign={"center"}
                             />
                             {/* инпут для емейла */}
                             <TextInput
@@ -114,6 +115,7 @@ export const RegistrationScreen = () => {
                                 onBlur={() => { setIsEmailFocused(false) }}
                                 onChangeText={text => handleSetEmail(text)}
                                 value={email}
+                                // textAlign={"center"}
                             />
                             {/* инпут для пароля */}
                             <TextInput
@@ -132,6 +134,7 @@ export const RegistrationScreen = () => {
                                 onBlur={() => { setIsPassFocused(false) }}
                                 onChangeText={text => handleSetPassword(text)}
                                 value={password}
+                                // textAlign={"center"}
                             />
                             {/* Кнопка показать / скрыть пароль */}
                             <Pressable
@@ -168,7 +171,7 @@ const styles = StyleSheet.create({
         flex: 1,
         // width: "100vw",
         width: 420,
-        backgroundColor: '#fff',
+        backgroundColor: '#fff',        
     },
     background: {
         flex: 1,
@@ -177,12 +180,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     form: {
+        minWidth: 320,
         paddingTop: 32,
         paddingBottom: 45,
         paddingHorizontal: 16,
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
-        backgroundColor: '#fff',
+        backgroundColor: '#fff',        
     },
     avatar: {
         marginTop: -92,
@@ -255,6 +259,7 @@ const styles = StyleSheet.create({
         padding: 16,
         justifyContent: 'center',
         alignItems: 'center',
+        // marginHorizontal: 60,
     },
     btnTitle: {
         color: '#fff',
