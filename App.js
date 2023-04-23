@@ -1,9 +1,40 @@
+import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { LoginScreen } from './components/auth/LoginScreen';
 import { RegistrationScreen } from './components/auth/RegistrationScreen';
+import * as Font from 'expo-font';
+import * as SplashScreen from "expo-splash-screen";
+
+const fonts = {
+  "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+  "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+  "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+  "Inter-Medium": require("./assets/fonts/Inter-Medium.ttf"),
+};
 
 export default function App() {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    async function preloadFonts() {
+      try {
+        await Font.loadAsync(fonts);
+        SplashScreen.hideAsync();
+      } catch (error) {
+        console.warn(error);
+      } finally {
+        setIsReady(true);
+        SplashScreen.hideAsync();
+      }
+    }
+    preloadFonts();
+  }, []);
+  
+   if (!isReady) {
+    return null;
+  }
+  
   return (
     <View style={styles.container}>
       <RegistrationScreen />
@@ -21,74 +52,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-
-
-
-
-// import React, { useState } from "react";
-// import {
-//   StyleSheet,
-//   View,
-//   TextInput,
-//   TouchableWithoutFeedback,
-//   Keyboard,
-//   KeyboardAvoidingView,
-//   Platform,
-//   Alert,
-//   Button,
-// } from "react-native";
-
-// export default function App() {
-//   const [name, setName] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   const nameHandler = (text) => setName(text);
-//   const passwordHandler = (text) => setPassword(text);
-
-//   const onLogin = () => {
-//     Alert.alert("Credentials", `${name} + ${password}`);
-//   };
-
-//   return (
-//     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-//       <View style={styles.container}>
-//         <KeyboardAvoidingView
-//           behavior={Platform.OS == "ios" ? "padding" : "height"}
-//         >
-//           <TextInput
-//             value={name}
-//             onChangeText={nameHandler}
-//             placeholder="Username"
-//             style={styles.input}
-//           />
-//           <TextInput
-//             value={password}
-//             onChangeText={passwordHandler}
-//             placeholder="Password"
-//             secureTextEntry={true}
-//             style={styles.input}
-//           />
-//           <Button title={"Login"} style={styles.input} onPress={onLogin} />
-//         </KeyboardAvoidingView>
-//       </View>
-//     </TouchableWithoutFeedback>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: "center",
-//     justifyContent: "center",
-//     backgroundColor: "#ecf0f1",
-//   },
-//   input: {
-//     width: 200,
-//     height: 44,
-//     padding: 10,
-//     borderWidth: 1,
-//     borderColor: "black",
-//     marginBottom: 10,
-//   },
-// });

@@ -10,11 +10,13 @@ import {
     Platform,
     Keyboard,
     TouchableWithoutFeedback,
+    Dimensions,
 } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AntDesign } from "@expo/vector-icons";
 
 export const RegistrationScreen = () => {
+    const [dimensions, setDimensions] = useState(Dimensions.get('window').width -20 * 2)
     const [avatar, setAvatar] = useState(null);
     const [login, setLogin] = useState('');
     const [email, setEmail] = useState('');
@@ -33,6 +35,18 @@ export const RegistrationScreen = () => {
         setIsKeyboardShown(false);
         Keyboard.dismiss();
     };
+
+    useEffect(() => {
+        const onChange = () => {
+            const width = Dimensions.get("window").width;
+            console.log("width:", width);
+            setDimensions(width)
+        };
+        Dimensions.addEventListener("change", onChange);
+        return () => {
+            Dimensions.removeEventListener('change', onChange)
+        }
+    }, [])
 
     const handleFormSubmit = () => {
         console.log(`Регистрируем пользователя ${login}, адрес электронной почты: ${email}, пароль: ${password}`);
@@ -61,6 +75,7 @@ export const RegistrationScreen = () => {
                             ...styles.form,
                             paddingBottom: isKeyboardShown ? 0 : 45,
                             marginBottom: isKeyboardShown ? -120 : 0,
+                            width: dimensions,
                         }}>
                             {/* Контейнер для аватарки */}
                             <View style={styles.avatar}>
@@ -70,7 +85,7 @@ export const RegistrationScreen = () => {
                             {!avatar ? (
                                 <Pressable style={styles.avatarBtn} >
                                     <Text style={styles.addAvatar}>
-                                        <AntDesign name="plus" size={20} color="#FF6C00" />
+                                        <AntDesign style={styles.antDesign} name="plus" size={20} color="#FF6C00" />
                                     </Text>
                                 </Pressable>
                             ) : (
@@ -186,7 +201,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
-        backgroundColor: '#fff',        
+        backgroundColor: '#fff',   
+        //  ...Platform.select({
+        //     ios: {
+        //         backgroundColor: '#000000'
+        //     },
+        //     android: {
+        //         backgroundColor: '#fafafa'
+        //     },
+        // }),
     },
     avatar: {
         marginTop: -92,
@@ -199,22 +222,23 @@ const styles = StyleSheet.create({
     avatarBtn: {
         width: 25,
         height: 25,
-        alignSelf: 'center',
+        alignSelf: 'center',        
         marginTop: -39,
         marginRight: -119.5,
     },
     addAvatar: {
         backgroundColor: '#fff',
-        borderRadius: 25,
+        width: 25,
+        height: 25,
+        borderRadius: 12,
         borderWidth: 1,
         borderColor: '#FF6C00',
         textAlign: 'center',
-        alignItems: 'center',
-        justifyContent: 'center'
+        paddingTop: 2,
     },
     delAvatar: {
         backgroundColor: '#fff',
-        borderRadius: 25,
+        borderRadius: 10,
         borderWidth: 1,
         borderColor: '#BDBDBD',
         textAlign: 'center',
@@ -236,10 +260,12 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 8,
         color: "#212121",
+        // color: "#da70d6",
         borderWidth: 1,
         borderColor: 'transparent',
         fontSize: 16,
         fontFamily: "Roboto-Regular",
+        // marginHorizontal: 10,
     },
     showPass: {
         alignSelf: 'flex-end',
