@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { LoginScreen } from './components/auth/LoginScreen';
-import { RegistrationScreen } from './components/auth/RegistrationScreen';
+// import { RegistrationScreen } from './components/auth/RegistrationScreen';
 import * as Font from 'expo-font';
 import * as SplashScreen from "expo-splash-screen";
+import { RegistrationScreen } from './example/RegistrationScreen';
 
 const fonts = {
   "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
