@@ -90,8 +90,8 @@ export const RegistrationScreen = () => {
                                 width: dimensions,
                             }}>
                             <View style={styles.header}>
-                                <Text style={styles.headerTitle}>Hello again</Text>
                                 <Text style={styles.headerTitle}>Welcome back</Text>
+                                <Text style={styles.headerTitle}>Sign up to get started</Text>
                             </View>
                             <View>
                                 <Text style={styles.inputTitle}>Email address</Text>
